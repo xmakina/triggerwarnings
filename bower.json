@@ -1,0 +1,24 @@
+{
+  "name": "superScoreboard",
+  "version": "0.0.0",
+  "authors": [
+    "Alex Winson <awinson@neworbit.co.uk>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-ui-router": "~0.2.14",
+    "lodash": "~3.8.0",
+    "restangular": "~1.5.1",
+    "angular-loading-bar": "~0.7.1",
+    "bootstrap": "~3.3.4",
+    "angular-bootstrap": "~0.13.0",
+    "angular-carousel": "~0.3.10"
+  }
+}
