@@ -14,11 +14,13 @@
     mongoose.connect(process.env.MONGOLAB_URI);
 
     require('./models/Users');
+    require('./models/Triggers');
     require('./config/passport');
 
     var routes = require('./routes/index');
     var users = require('./routes/users');
     var tvdb = require('./routes/tvdb');
+    var episodes = require('./routes/episodes');
 
     var app = express();
     app.use(passport.initialize());
@@ -39,6 +41,7 @@
     app.use('/', routes);
     app.use('/users', users);
     app.use('/tvdb', tvdb);
+    app.use('/episodes', episodes);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

@@ -12,11 +12,6 @@
     /* GET users listing. */
     router.get('/shows/', function(req, res, next) {
         if (req.query.name !== undefined) {
-           
-res.json([{'id':123, 'name':'orange is the new black'}
-    ,{'id':13, 'name':'game of thrones'}]);
-return;
-
             tvdb.findTvShow(req.query.name, function(err, tvShows) {
                 if (err) {
                     return next(err);

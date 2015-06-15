@@ -67,7 +67,9 @@
                     'bower_components/angular-touch/angular-touch.js',
                     'bower_components/angular-carousel/dist/angular-carousel.js',
                     'bower_components/angular-sanitize/angular-sanitize.js',
-                    'bower_components/angular-ui-select2/src/select2.js'
+                    'bower_components/angular-ui-select2/src/select2.js',
+                    'bower_components/moment/moment.js',
+                    'bower_components/angular-moment/angular-moment.js',
                 ])
             .pipe(concat('vendor.js'))
             .pipe(gulp.dest('public/javascripts'));

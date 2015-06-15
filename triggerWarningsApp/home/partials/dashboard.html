@@ -12,9 +12,50 @@
     <div class="col-lg-6">
         <h4>Select A Show</h4>
         <input ui-select2="showListOptions" ng-model="trigger.show" required style="width:100%;" />
-        <p>{{trigger}}</p>
     </div>
 </div>
+<div class="row marketing" ng-show="show.episodes">
+    <div class="col-lg-6">
+        <h4>Select An Episode</h4>
+        <select ui-select2 ng-model="trigger.episode" required style="width:100%;">
+            <option value=""></option>
+            <option ng-repeat="episode in show.episodes" value="{{episode.id}}">
+                S{{episode.season | numberFixedLen:2}}E{{episode.number|numberFixedLen:2}} {{episode.name}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="row marketing" ng-show="trigger.episode">
+    <div class="col-lg-6">
+        <h4>Trigger Warnings</h4>
+        <ul>
+            <li ng-repeat="trigger in triggers">
+                {{trigger}}
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row marketing">
+    <div class="col-lg-6">
+        <h4>Add a Trigger Warning</h4>
+        <form ng-submit="addTrigger()">
+            <div class="form-group">
+                <label>When does the trigger start? (Hour:Minute:Second)</label>
+                <div lap-time-input="trigger.start"></div>
+            </div>
+            <div class="form-group">
+                <label>How long does it last for? (Hour:Minute:Second)</label>
+                <div lap-time-input="trigger.duration"></div>
+            </div>
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <input id="tags" type="hidden" ui-select2="tagOptions" ng-model="trigger.tags" style="width:100%;" />
+            </div>
+            <input type="submit">
+        </form>
+    </div>
+</div>
+<p>{{trigger}}</p>
 <footer class="footer">
     <p>&copy; Alex Winson 2015</p>
 </footer>

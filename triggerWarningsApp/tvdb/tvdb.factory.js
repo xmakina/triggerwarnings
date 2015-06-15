@@ -10,10 +10,20 @@
                 };
 
                 o.findShow = function(name) {
-                    return Restangular.all('tvdb').all('shows').getList({
-                        name: name
-                    }).then(function(data) {
-                        o.showList = data;
+                    return Restangular.all('tvdb')
+                        .all('shows').getList({
+                            name: name
+                        }).then(function(data) {
+                            o.showList = data;
+                        });
+                };
+
+                o.getShow = function(id) {
+                    console.log('id', id);
+                    return Restangular.all('tvdb')
+                    .one('shows', id).get()
+                    .then(function(data){
+                        o.show = data;
                     });
                 };
 
