@@ -1,13 +1,21 @@
-<h1>Lola's Surgery Typing Scoreboard</h1>
-<p>Hello! I'm Lola and I'm running a raffle typing contest.</p>
-<p>Here's how it works. Take this typing test. Your setting should be:<br />
-	<ul><li>Your fluent language</li><li>2 minutes</li><li>Choose your own</li>
-</ul>
-And then hit "Start Test". Use your adjusted speed and screencap it just in case.</p>
-<p>Donate to my surgery fundraiser by going to this page [Linked to my fundraiser]. In your message, let me know that you're adding to the scoreboard. I'll then add your information to the scoreboard below.</p>
-<p>Keep checking back! 11:59 PM on 10 July, I will update the scoreboard for the last time and the winner will receive a special prize from LUSH!</p>
-<hr />
-<h2>Scoreboard</h2>
-<ol>
-<li ng-repeat="player in players | orderBy: '-score'">{{player.name}} | {{player.score}}</li>
-</ol>
+<div class="header clearfix">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">About</a></li>
+            <li role="presentation"><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <h3 class="text-muted">Trigger Warnings<span class="small">.info</span></h3>
+</div>
+<div class="row marketing">
+    <div class="col-lg-6">
+        <h4>Select A Show</h4>
+        <input ui-select2="showListOptions" ng-model="trigger.show" required style="width:100%;" />
+        <p>{{trigger}}</p>
+    </div>
+</div>
+<footer class="footer">
+    <p>&copy; Alex Winson 2015</p>
+</footer>
+</div>
