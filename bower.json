@@ -1,8 +1,8 @@
 {
-  "name": "superScoreboard",
+  "name": "triggerWarnings",
   "version": "0.0.0",
   "authors": [
-    "Alex Winson <awinson@neworbit.co.uk>"
+    "Alex Winson <triggerwarnings@xmakina.co.uk>"
   ],
   "ignore": [
     "**/.*",
@@ -19,6 +19,12 @@
     "angular-loading-bar": "~0.7.1",
     "bootstrap": "~3.3.4",
     "angular-bootstrap": "~0.13.0",
-    "angular-carousel": "~0.3.10"
+    "angular-carousel": "~0.3.10",
+    "angular-ui-select2": "~0.0.5",
+    "moment": "~2.10.3",
+    "angular-moment": "~0.10.1"
+  },
+  "resolutions": {
+    "angular": "1.4.0"
   }
 }
