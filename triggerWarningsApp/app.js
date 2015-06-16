@@ -20,6 +20,7 @@
                 abstract: true,
                 template: '<div ui-view></div>'
             });
+
             $urlRouterProvider.otherwise('/');
         }
     ]);
@@ -39,41 +40,53 @@
         };
     });
 
-    angular.module('triggerWarningsApp').directive('lapTimeInput', 
-        ['moment', function(moment) {
-        var tpl = '<div class="lap_time_input">'+
-              '<input ng-model="lapTimeInput" type="hidden" placeholder="00.00">'+
-              '<input ng-model="lap_time.minutes" type="number" class="minutes" placeholder="00" min="0" max="15" step="1">'+
-              '<span class="lap-time-sep">:</span>'+
-              '<input ng-model="lap_time.seconds" type="number" class="seconds" placeholder="00" min="0" max="59" step="1">'+
-              '<span class="lap-time-sep">.</span>'+
-              '<input ng-model="lap_time.milliseconds" type="number" class="milliseconds" placeholder="000" min="0" max="999" step="1">'+
-              '</div>';
+    angular.module('triggerWarningsApp').directive('timeInput', ['moment', function(moment) {
+        var tpl = '<div class="time_input">' +
+            '<input ng-model="timeInput" type="hidden" placeholder="00.00">' +
+            '<input ng-model="time.hours" type="number" class="hours" placeholder="00" max="6" min="0" step="1">' +
+            '<span class="time-sep">:</span>' +
+            '<input ng-model="time.minutes" type="number" class="minutes" placeholder="00" min="0" max="59" step="1">' +
+            '<span class="time-sep">:</span>' +
+            '<input ng-model="time.seconds" type="number" class="seconds" placeholder="000" min="0" max="59" step="1">' +
+            '</div>';
 
         return {
             restrict: 'A',
             template: tpl,
             replace: true,
             scope: {
-                lapTimeInput: '='
+                timeInput: '='
             },
             link: function(scope, element, attrs) {
 
-                scope.$watch('lapTimeInput', function(newValue) {
+                scope.$watch('timeInput', function(newValue) {
                     var duration = moment.duration(newValue, 'seconds');
-                    scope.lap_time = {
+                    scope.time = {
+                        hours: duration.hours(),
                         minutes: duration.minutes(),
-                        seconds: duration.seconds(),
-                        milliseconds: duration.milliseconds()
+                        seconds: duration.seconds()
                     };
                 });
 
-                scope.$watchCollection('lap_time', function(newTime, oldTime) {
-                    scope.lapTimeInput = moment.duration(newTime, 'seconds').asSeconds();
+                scope.$watchCollection('time', function(newTime, oldTime) {
+                    scope.timeInput = moment.duration(newTime, 'seconds').asSeconds();
                 });
             }
         };
     }]);
+
+    angular.module('triggerWarningsApp').filter('time', [
+        'moment', '$filter',
+        function(moment, $filter) {
+            return function(input) {
+                var time = moment.duration(input, 'seconds');
+                var hours = $filter('numberFixedLen')(time.hours());
+                var minutes = $filter('numberFixedLen')(time.minutes(), 2);
+                var seconds = $filter('numberFixedLen')(time.seconds(), 2);
+                return hours + ':' + minutes + ':' + seconds;
+            };
+        }
+    ]);
 
     return angular;
 })();

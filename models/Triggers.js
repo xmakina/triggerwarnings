@@ -5,7 +5,7 @@
     var mongoose = require('mongoose');
 
     var TriggerSchema = new mongoose.Schema({
-        episode: Number,
+  		episode: Number,
         start: Number,
         duration: Number,
         tags: [String]

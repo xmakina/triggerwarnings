@@ -16,7 +16,7 @@
 
                 auth.isLoggedIn = function() {
                     var token = auth.getToken();
-
+console.log('token', token);
                     if (token) {
                         var payload = JSON.parse($window.atob(token.split('.')[1]));
 

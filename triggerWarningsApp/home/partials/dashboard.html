@@ -2,8 +2,8 @@
     <nav>
         <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>
+            <li ng-hide="isLoggedIn === true" role="presentation"><a ui-sref="auth.login">Log In</a></li>
+            <li ng-show="isLoggedIn === true" role="presentation"><a ui-sref="auth.logout">Log Out</a></li>
         </ul>
     </nav>
     <h3 class="text-muted">Trigger Warnings<span class="small">.info</span></h3>
@@ -11,7 +11,7 @@
 <div class="row marketing">
     <div class="col-lg-6">
         <h4>Select A Show</h4>
-        <input ui-select2="showListOptions" ng-model="trigger.show" required style="width:100%;" />
+        <input ui-select2="showListOptions" ng-model="selectedShow" required style="width:100%;" />
     </div>
 </div>
 <div class="row marketing" ng-show="show.episodes">
@@ -28,24 +28,30 @@
 <div class="row marketing" ng-show="trigger.episode">
     <div class="col-lg-6">
         <h4>Trigger Warnings</h4>
-        <ul>
-            <li ng-repeat="trigger in triggers">
-                {{trigger}}
+        <ul ng-repeat="episodeTrigger in triggers">
+            <li>
+                <span ng-repeat="tag in episodeTrigger.tags">{{tag}}<span ng-if="$index < episodeTrigger.tags.length - 1">,&nbsp;</span></span>
             </li>
+            <ul>
+                <li>Start: {{episodeTrigger.start | time}}</li>
+                <li>Duration: {{episodeTrigger.duration | time}}</li>
+                <li ng-if="isLoggedIn === true"><a ng-click="setTrigger(episodeTrigger)" href="#">Edit</a></li>
+                <li ng-if="isLoggedIn === true"><a ng-click="removeTrigger(episodeTrigger)" href="#">Remove</a></li>
+            </ul>
         </ul>
     </div>
 </div>
-<div class="row marketing">
+<div class="row marketing" ng-show="trigger.episode && isLoggedIn === true">
     <div class="col-lg-6">
         <h4>Add a Trigger Warning</h4>
         <form ng-submit="addTrigger()">
             <div class="form-group">
                 <label>When does the trigger start? (Hour:Minute:Second)</label>
-                <div lap-time-input="trigger.start"></div>
+                <div time-input="trigger.start"></div>
             </div>
             <div class="form-group">
                 <label>How long does it last for? (Hour:Minute:Second)</label>
-                <div lap-time-input="trigger.duration"></div>
+                <div time-input="trigger.duration"></div>
             </div>
             <div class="form-group">
                 <label for="tags">Tags</label>
@@ -55,7 +61,6 @@
         </form>
     </div>
 </div>
-<p>{{trigger}}</p>
 <footer class="footer">
     <p>&copy; Alex Winson 2015</p>
 </footer>

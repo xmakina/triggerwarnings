@@ -24,10 +24,12 @@
             $stateProvider.state('auth.logout', {
                 url: '/logout',
                 template: '<div ui-view></div>',
-                controller: 'AuthCtrl',
+                controller: ['$state', function($state) {
+                    $state.go('dashboard');
+                }],
                 parent: 'auth',
                 resolve: {
-                    logout: ['auth', function(auth) {
+                    logout: ['auth', '$state', function(auth) {
                         auth.logOut();
                     }]
                 }

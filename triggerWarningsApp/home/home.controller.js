@@ -3,10 +3,11 @@
     angular.module('triggerWarningsApp.home').controller('HomeCtrl', [
         '$scope', 'auth', '$state', 'tvdb', 'triggers',
         function($scope, auth, $state, tvdb, triggers) {
-            $scope.isLoggedIn = auth.isLoggedIn;
+            $scope.isLoggedIn = auth.isLoggedIn();
             $scope.logOut = auth.logOut;
             $scope.trigger = {};
             $scope.show = tvdb.show;
+            $scope.triggers = triggers.triggerList;
 
             var findShow = function(queryParams) {
                 var name = queryParams.data.q;
@@ -23,6 +24,10 @@
                 }
             };
 
+            $scope.setTrigger = function(trigger) {
+                $scope.trigger = trigger;
+            };
+
             $scope.$watch('trigger.episode', function(newVal, oldVal) {
                 if (oldVal === newVal) {
                     return;
@@ -36,7 +41,7 @@
             $scope.showListOptions = {
                 minimumInputLength: 1,
                 initSelection: function(element, callback) {
-                    getShow($scope.trigger.show);
+                    getShow($scope.selectedShow);
                     callback();
                 },
                 ajax: {
@@ -62,19 +67,40 @@
                 },
             };
 
-
             $scope.tagOptions = {
                 'multiple': true,
                 'simple_tags': true,
-                'tags': ['tag1', 'tag2', 'tag3', 'tag4'], // Can be empty list                
+                'tags': [], // Can be empty list                
             };
 
             $scope.addTrigger = function() {
-                triggers.addTrigger($scope.trigger);
+                if ($scope.trigger.id === undefined) {
+                    triggers.addTrigger($scope.trigger).then(function() {
+                        $scope.trigger = {
+                            episode: $scope.trigger.episode
+                        };
+                        $scope.triggers = triggers.triggerList;
+                    });
+                } else {
+                    triggers.updateTrigger($scope.trigger).then(function() {
+                        $scope.trigger = {
+                            episode: $scope.trigger.episode
+                        };
+                        $scope.triggers = triggers.triggerList;
+                    });
+                }
             };
 
+            $scope.removeTrigger = function(trigger) {
+                triggers.removeTrigger(trigger).then(function() {
+                    $scope.trigger = {
+                        episode: $scope.trigger.episode
+                    };
+                    $scope.triggers = triggers.triggerList;
+                });
+            };
+
+            return angular;
         }
     ]);
-
-    return angular;
 })();

@@ -18,9 +18,22 @@
                 };
 
                 o.addTrigger = function(trigger) {
-                    console.log('trigger', trigger);
                     return Restangular.one('episodes', trigger.episode)
-                        .all('triggers').post(trigger);
+                        .all('triggers').post(trigger).then(function() {
+                            return o.getTriggers(trigger.episode);
+                        });
+                };
+
+                o.updateTrigger = function(trigger) {
+                    return trigger.put().then(function() {
+                        return o.getTriggers(trigger.episode);
+                    });
+                };
+
+                o.removeTrigger = function(trigger) {
+                    return trigger.remove().then(function() {
+                        return o.getTriggers(trigger.episode);
+                    });
                 };
 
                 return o;

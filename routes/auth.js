@@ -8,6 +8,7 @@
     var passport = require('passport');
 
     router.post('/register', function(req, res, next) {
+        console.log('register');
         if (!req.body.username || !req.body.password) {
             return res.status(400).json({
                 message: 'Please fill out all fields'

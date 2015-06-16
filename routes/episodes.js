@@ -41,8 +41,8 @@
         var trigger = new Trigger();
         trigger.episode = req.params.id;
         trigger.start = req.body.start;
-        trigger.start = req.body.duration;
-        trigger.start = req.body.tags;
+        trigger.duration = req.body.duration;
+        trigger.tags = req.body.tags;
 
         trigger.save(function(err) {
             if (err) {
@@ -50,6 +50,51 @@
             }
 
             return res.json(trigger);
+        });
+    });
+
+    router.put('/:episodeId/triggers/:id', function(req, res, next) {
+        if (!req.body.start || !req.body.duration || !req.body.tags) {
+            return res.status(400).json({
+                message: 'Please fill out all fields'
+            });
+        }
+        Trigger.findOne({
+            _id: req.params.id
+        }, function(err, trigger) {
+            if (err) {
+                return next(err);
+            }
+
+            trigger.start = req.body.start;
+            trigger.duration = req.body.duration;
+            trigger.tags = req.body.tags;
+
+            trigger.save(function(err) {
+                if (err) {
+                    return next(err);
+                }
+
+                return res.json(trigger);
+            });
+        });
+    });
+
+    router.delete('/:episodeId/triggers/:id', function(req, res, next) {
+        Trigger.findOne({
+            _id: req.params.id
+        }, function(err, trigger) {
+            if (err) {
+                return next(err);
+            }
+
+            trigger.remove(function(err) {
+                if (err) {
+                    return next(err);
+                }
+
+                return res.json(trigger);
+            });
         });
     });
 

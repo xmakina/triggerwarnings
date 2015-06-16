@@ -18,6 +18,7 @@
     require('./config/passport');
 
     var routes = require('./routes/index');
+    var auth = require('./routes/auth');
     var users = require('./routes/users');
     var tvdb = require('./routes/tvdb');
     var episodes = require('./routes/episodes');
@@ -39,6 +40,7 @@
     app.use(express.static(path.join(__dirname, 'public')));
 
     app.use('/', routes);
+    app.use('/', auth);
     app.use('/users', users);
     app.use('/tvdb', tvdb);
     app.use('/episodes', episodes);

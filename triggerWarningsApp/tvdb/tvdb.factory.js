@@ -19,7 +19,6 @@
                 };
 
                 o.getShow = function(id) {
-                    console.log('id', id);
                     return Restangular.all('tvdb')
                     .one('shows', id).get()
                     .then(function(data){
