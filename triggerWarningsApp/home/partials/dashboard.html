@@ -1,20 +1,21 @@
 <div class="header clearfix">
     <nav>
         <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a ui-sref="dashboard">Home</a></li>
-            <li ng-hide="isLoggedIn === true" role="presentation"><a ui-sref="auth.login">Log In</a></li>
-            <li ng-show="isLoggedIn === true" role="presentation"><a ui-sref="auth.logout">Log Out</a></li>
+            <li role="presentation"><a ui-sref="shows.list">TV Shows</a></li>
+            <li ng-hide="isLoggedIn() === true" role="presentation"><a ui-sref="auth.login">Log In</a></li>
+            <li ng-show="isLoggedIn() === true" role="presentation"><a ui-sref="auth.logout">Log Out</a></li>
         </ul>
     </nav>
     <h3 class="text-muted" ng-click="goHome()">Trigger Warnings<span class="small">.info</span></h3>
 </div>
 <div class="container">
-    <h4><a class="btn btn-default" ui-sref="shows.list">TV Shows</a></h4>
     <ui-view></ui-view>
 </div>
 <div class="row">
     <hr />
     <div class="container">
-        <p>&copy; <a href="https://www.twitter.com/xmakina" target="_blank"> Alex Winson 2015</p>
+        <div class="pull-right">
+            <p>&copy; <a href="https://www.twitter.com/xmakina" target="_blank"> Alex Winson 2015</a></p>
+        </div>
     </div>
 </div>

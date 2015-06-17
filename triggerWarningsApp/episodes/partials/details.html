@@ -10,10 +10,10 @@
             <ul>
                 <li>Start: {{episodeTrigger.start | time}}</li>
                 <li>Duration: {{episodeTrigger.duration | time}}</li>
-                <li ng-if="isLoggedIn === true"><a class="clickable" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
-                <li ng-if="isLoggedIn === true"><a ng-click="removeTrigger(episodeTrigger)">Remove</a></li>
+                <li ng-if="isLoggedIn() === true"><a class="clickable" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
+                <li ng-if="isLoggedIn() === true"><a ng-click="removeTrigger(episodeTrigger)">Remove</a></li>
             </ul>
         </ul>
-        <p><a ng-if="isLoggedIn" ui-sref="triggers.add">Add trigger</a></p>
+        <p><a ng-if="isLoggedIn()" ui-sref="triggers.add">Add trigger</a></p>
     </div>
 </div>
