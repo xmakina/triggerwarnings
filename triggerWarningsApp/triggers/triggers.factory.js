@@ -9,12 +9,32 @@
                     trigger: {}
                 };
 
+                var andSetTrigger;
+
                 o.getTriggers = function(id) {
                     return Restangular.one('episodes', id)
                         .all('triggers').getList()
                         .then(function(data) {
                             o.triggerList = data;
+                            if(andSetTrigger !== undefined){
+                                return o.setTrigger(andSetTrigger);
+                            }
                         });
+                };
+
+                o.setTrigger = function(id) {
+                    if (o.triggerList.length === 0) {
+                        andSetTrigger = id;
+                        return true;
+                    }
+
+                    var i = 0;
+                    while (o.triggerList[i].id !== id) {
+                        i++;
+                    }
+
+                    o.trigger = o.triggerList[i];
+                    return true;
                 };
 
                 o.addTrigger = function(trigger) {
