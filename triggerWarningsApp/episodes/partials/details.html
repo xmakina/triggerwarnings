@@ -4,6 +4,7 @@
         <h4>Trigger Warnings</h4>
         <p ng-if="triggerList.length === 0">No triggers found. <emphasis>This may not mean the episode is trigger free.</emphasis></p>
         <ul ng-repeat="episodeTrigger in triggerList">
+            <li>{{episodeTrigger}}</li>
             <li>
                 <span ng-repeat="tag in episodeTrigger.tags">{{tag}}<span ng-if="$index < episodeTrigger.tags.length - 1">,&nbsp;</span></span>
             </li>

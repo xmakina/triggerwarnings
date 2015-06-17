@@ -5,10 +5,15 @@
     var mongoose = require('mongoose');
 
     var TriggerSchema = new mongoose.Schema({
+  		show: Number,
+  		showName: String,
   		episode: Number,
+  		episodeName: String,
         start: Number,
         duration: Number,
-        tags: [String]
+        tags: [String],
+        date: { type: Date, default: Date.now },
+        authour: String
     });
 
     mongoose.model('Trigger', TriggerSchema);

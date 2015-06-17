@@ -22,6 +22,7 @@
     var users = require('./routes/users');
     var tvdb = require('./routes/tvdb');
     var episodes = require('./routes/episodes');
+    var triggers = require('./routes/triggers');
 
     var app = express();
     app.use(passport.initialize());
@@ -44,6 +45,7 @@
     app.use('/users', users);
     app.use('/tvdb', tvdb);
     app.use('/episodes', episodes);
+    app.use('/triggers', triggers);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

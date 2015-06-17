@@ -7,7 +7,7 @@
             $scope.logOut = auth.logOut;
 
             $scope.goHome = function(){
-            	$state.go('dashboard');
+            	$state.go('dashboard.page');
             };
         }
     ]);

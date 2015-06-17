@@ -7,9 +7,16 @@
         '$stateProvider',
         function($stateProvider) {
             $stateProvider.state('dashboard', {
+                abstract:'true',
                 parent: 'root',
                 url: '/',
                 templateUrl: 'home/partials/dashboard.html',
+                controller: 'HomeCtrl'
+            });
+
+            $stateProvider.state('dashboard.page', {
+                url: '',
+                templateUrl: 'home/partials/page.html',
                 controller: 'HomeCtrl'
             });
         }

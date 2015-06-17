@@ -19,7 +19,12 @@
                     console.log('trigger', trigger);
                     if (trigger.episode === undefined) {
                         var sentTrigger = angular.copy(trigger);
+
+                        sentTrigger.show = $scope.show.tvShow.id;
+                        sentTrigger.showName = $scope.show.tvShow.name;
                         sentTrigger.episode = $scope.episode.id;
+                        sentTrigger.episodeName = $scope.episode.name;
+
                         triggers.addTrigger(sentTrigger).then(function() {
                             $state.go('episodes.detail.page');
                         });
