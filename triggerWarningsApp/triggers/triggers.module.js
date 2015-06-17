@@ -14,12 +14,26 @@
 
             $stateProvider.state('triggers.add', {
                 url: '/add',
-                templateUrl: 'triggers/partials/add.html',
-                controller: 'TriggersCtrl'
+                templateUrl: 'triggers/partials/details.html',
+                controller: 'TriggersCtrl',
+                resolve: {
+                    clearTrigger:['triggers',
+                    function(triggers){
+                        triggers.trigger = {};
+                    }]
+                }
             });
 
             $stateProvider.state('triggers.detail', {
                 url: '/:triggerId',
+                resolve: {
+                    getTrigger: [
+                        'triggers', '$stateParams',
+                        function(triggers, $stateParams) {
+                            return triggers.setTrigger($stateParams.triggerId);
+                        }
+                    ]
+                },
                 templateUrl: 'triggers/partials/details.html',
                 controller: 'TriggersCtrl'
             });

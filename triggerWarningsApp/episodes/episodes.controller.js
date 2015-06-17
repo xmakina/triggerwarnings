@@ -3,11 +3,19 @@
 
     angular.module('triggerWarningsApp.episodes')
         .controller('EpisodesCtrl', [
-            '$scope', 'triggers','tvdb',
+            '$scope', 'triggers', 'tvdb',
             function($scope, triggers, tvdb) {
-            	console.log('tvdb.episode', tvdb.episode);
-            	$scope.episode = tvdb.episode;
-            	$scope.triggers = triggers.triggers;
+                $scope.show = tvdb.show;
+                $scope.episode = tvdb.episode;
+                $scope.triggerList = triggers.triggerList;
+
+                $scope.removeTrigger = function(trigger) {
+                    triggers.removeTrigger(trigger).then(function() {
+                        return triggers.getTriggers($scope.episode.id).then(function() {
+                            $scope.triggerList = triggers.triggerList;
+                        });
+                    });
+                };
             }
         ]);
 

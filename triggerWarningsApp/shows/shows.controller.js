@@ -18,7 +18,6 @@
                         }
                     });
 
-
                 $scope.$watch('selectedEpisode',
                     function(newValue, oldValue) {
                         if (newValue !== undefined) {

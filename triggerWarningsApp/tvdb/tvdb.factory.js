@@ -10,7 +10,7 @@
                     episode: {}
                 };
 
-                var andGetEpisode;
+                var andSetEpisode;
 
                 o.findShow = function(name) {
                     return Restangular.all('tvdb')
@@ -22,23 +22,23 @@
                 };
 
                 o.getShow = function(id) {
-                    if (o.show.tvShow === undefined) {
+                    if (o.show.tvShow === undefined || o.show.tvShow.id !== id) {
                         return Restangular.all('tvdb')
                             .one('shows', id).get()
                             .then(function(data) {
                                 o.show = data;
-                                if(andGetEpisode !== null){
-                                    console.log('andGetEpisode', andGetEpisode);
-                                    return o.setEpisode(andGetEpisode);
+                                if (andSetEpisode !== undefined) {
+                                    return o.setEpisode(andSetEpisode);
                                 }
                             });
+                    } else {
+                        return true;
                     }
                 };
 
                 o.setEpisode = function(id) {
-                    console.log('o.show', o.show);
                     if (o.show.tvShow === undefined) {
-                        andGetEpisode = id;
+                        andSetEpisode = id;
                         return true;
                     }
 
@@ -48,7 +48,6 @@
                     }
 
                     o.episode = o.show.episodes[i];
-                    console.log('o.episode', o.episode);
                     return true;
                 };
 

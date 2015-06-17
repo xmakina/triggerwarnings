@@ -33,12 +33,6 @@
 
             $stateProvider.state('shows.detail.page', {
                 url:'',
-                resolve:{
-                    getShow:['$stateParams', 'tvdb',
-                    function($stateParams, tvdb){
-                        return tvdb.getShow($stateParams.showId);
-                    }]
-                },
                 templateUrl:'shows/partials/details.html',
                 controller:'ShowsCtrl'
             });

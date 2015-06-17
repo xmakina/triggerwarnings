@@ -1,7 +1,7 @@
 <div class="row marketing" ng-show="show.episodes">
     <div class="col-lg-6">
-        <h4>{{show.tvShow.name}}</h4>
-        <h5>Select an Episode</h5>
+        <h3>{{show.tvShow.name}}</h3>
+        <h4>Select an Episode</h4>
         <select ui-select2 ng-model="selectedEpisode" required style="width:100%;">
             <option ng-repeat="episode in show.episodes" value="{{episode.id}}">
                 S{{episode.season | numberFixedLen:2}}E{{episode.number|numberFixedLen:2}} {{episode.name}}
