@@ -1,14 +1,22 @@
 (function() {
     'use strict';
-    angular.module('triggerWarningsApp.auth').controller('AuthCtrl', ['$scope', '$state', 'auth',
-        function($scope, $state, auth) {
+    angular.module('triggerWarningsApp.auth').controller('AuthCtrl', ['$scope', '$state', 'auth', '$rootScope',
+        function($scope, $state, auth, $rootScope) {
             $scope.user = {};
-            
+
+            var goToPreviousState = function() {
+                if ($rootScope.previousState !== undefined) {
+                    $state.go($rootScope.previousState, $rootScope.previousParams);
+                } else {
+                    $state.go('dashboard');
+                }
+            };
+
             $scope.register = function() {
                 auth.register($scope.user).error(function(error) {
                     $scope.error = error;
                 }).then(function() {
-                    $state.go('dashboard');
+                    goToPreviousState();
                 });
             };
 
@@ -16,7 +24,7 @@
                 auth.logIn($scope.user).error(function(error) {
                     $scope.error = error;
                 }).then(function() {
-                    $state.go('dashboard');
+                    goToPreviousState();
                 });
             };
         }

@@ -10,19 +10,19 @@
                 template: '<div ui-view></div>'
             });
             $stateProvider.state('auth.login', {
-                url: '/login',
+                url: 'login',
                 templateUrl: 'auth/partials/login.html',
                 controller: 'AuthCtrl',
                 parent: 'auth'
             });
             $stateProvider.state('auth.register', {
-                url: '/register',
+                url: 'register',
                 templateUrl: 'auth/partials/register.html',
                 controller: 'AuthCtrl',
                 parent: 'auth'
             });
             $stateProvider.state('auth.logout', {
-                url: '/logout',
+                url: 'logout',
                 template: '<div ui-view></div>',
                 controller: ['$state', function($state) {
                     $state.go('dashboard');

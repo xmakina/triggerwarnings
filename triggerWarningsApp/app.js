@@ -20,7 +20,18 @@
             $stateProvider.state('root', {
                 url: '',
                 abstract: true,
-                template: '<div ui-view></div>'
+                template: '<div ui-view></div>',
+                controller: ['$rootScope', function($rootScope) {
+                    $rootScope.previousState;
+                    $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+                        if (from.name === 'auth.login' || from.name === 'auth.register') {
+                            return false;
+                        }
+
+                        $rootScope.previousState = from.name;
+                        $rootScope.previousParams = fromParams;
+                    });
+                }]
             });
 
             $urlRouterProvider.otherwise('/');
