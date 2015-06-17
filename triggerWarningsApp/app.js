@@ -8,6 +8,8 @@
         'angularMoment',
         'triggerWarningsApp.templates',
         'triggerWarningsApp.home',
+        'triggerWarningsApp.shows',
+        'triggerWarningsApp.episodes',
         'triggerWarningsApp.auth',
         'triggerWarningsApp.tvdb',
         'triggerWarningsApp.triggers'

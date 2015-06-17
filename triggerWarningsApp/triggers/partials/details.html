@@ -1,0 +1,21 @@
+<div class="row marketing">
+    <div class="col-lg-6">
+    	<h3><a ui-sref="shows.detail.page">{{show.tvShow.name}}</a> : <a ui-sref="episodes.detail.page">{{episode.name}}</a></h3>
+        <h4>Add a Trigger Warning</h4>
+        <form ng-submit="addTrigger(trigger)">
+            <div class="form-group">
+                <label>When does the trigger start? (Hour:Minute:Second)</label>
+                <div time-input="trigger.start"></div>
+            </div>
+            <div class="form-group">
+                <label>How long does it last for? (Hour:Minute:Second)</label>
+                <div time-input="trigger.duration"></div>
+            </div>
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <input id="tags" type="hidden" ui-select2="tagOptions" ng-model="trigger.tags" style="width:100%;" />
+            </div>
+            <input class="btn btn-default" type="submit">
+        </form>
+    </div>
+</div>

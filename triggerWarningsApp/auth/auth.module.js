@@ -5,7 +5,7 @@
         function($stateProvider) {
             $stateProvider.state('auth', {
                 abstract: true,
-                parent: 'root',
+                parent: 'dashboard',
                 url: '',
                 template: '<div ui-view></div>'
             });
