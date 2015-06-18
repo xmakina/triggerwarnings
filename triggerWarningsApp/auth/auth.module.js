@@ -25,7 +25,7 @@
                 url: 'logout',
                 template: '<div ui-view></div>',
                 controller: ['$state', function($state) {
-                    $state.go('dashboard');
+                    $state.go('dashboard.page');
                 }],
                 parent: 'auth',
                 resolve: {
