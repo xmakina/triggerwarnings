@@ -15,7 +15,7 @@
                 return next(err);
             }
 
-            res.json(trigger);
+            res.json(trigger[0]);
         });
     });
     module.exports = router;

@@ -7,7 +7,7 @@
         '$stateProvider',
         function($stateProvider) {
             $stateProvider.state('dashboard', {
-                abstract:'true',
+                abstract: 'true',
                 parent: 'root',
                 url: '/',
                 templateUrl: 'home/partials/dashboard.html',
@@ -16,6 +16,14 @@
 
             $stateProvider.state('dashboard.page', {
                 url: '',
+                resolve: {
+                    getLatest: [
+                        'triggers',
+                        function(triggers) {
+                            return triggers.getLatest();
+                        }
+                    ]
+                },
                 templateUrl: 'home/partials/page.html',
                 controller: 'HomeCtrl'
             });

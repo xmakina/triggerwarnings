@@ -70,6 +70,7 @@
                     'bower_components/angular-ui-select2/src/select2.js',
                     'bower_components/moment/moment.js',
                     'bower_components/angular-moment/angular-moment.js',
+                    'bower_components/angular-timeago/src/timeAgo.js'
                 ])
             .pipe(concat('vendor.js'))
             .pipe(gulp.dest('public/javascripts'));
