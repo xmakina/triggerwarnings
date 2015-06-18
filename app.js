@@ -42,10 +42,10 @@
 
     app.use('/', routes);
     app.use('/', auth);
-    app.use('/users', users);
-    app.use('/tvdb', tvdb);
-    app.use('/episodes', episodes);
-    app.use('/triggers', triggers);
+    app.use('/api/v1/users', users);
+    app.use('/api/v1/tvdb', tvdb);
+    app.use('/api/v1/episodes', episodes);
+    app.use('/api/v1/triggers', triggers);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
