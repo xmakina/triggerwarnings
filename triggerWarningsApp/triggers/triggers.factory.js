@@ -40,7 +40,8 @@
                 };
 
                 o.addTrigger = function(trigger) {
-                    return Restangular.all('triggers').post(trigger).then(function() {
+                    return Restangular.one('episodes', trigger.episode)
+                        .all('triggers').post(trigger).then(function() {
                             return o.getTriggers(trigger.episode);
                         });
                 };
