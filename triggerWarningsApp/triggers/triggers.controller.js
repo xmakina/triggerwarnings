@@ -12,11 +12,10 @@
                 $scope.tagOptions = {
                     'multiple': true,
                     'simple_tags': true,
-                    'tags': [],
+                    'tags': ['racism', 'sexual violence', 'rape', 'misogyny', 'domestic abuse'],
                 };
 
                 $scope.addTrigger = function(trigger) {
-                    console.log('trigger', trigger);
                     if (trigger.episode === undefined) {
                         var sentTrigger = angular.copy(trigger);
 
@@ -29,7 +28,6 @@
                             $state.go('episodes.detail.page');
                         });
                     } else {
-                        console.log('updating', trigger);
                         triggers.updateTrigger(trigger).then(function() {
                             $state.go('episodes.detail.page');
                         });

@@ -22,6 +22,12 @@
                         function(triggers) {
                             return triggers.getLatest();
                         }
+                    ],
+                    getGoal: [
+                        'triggers',
+                        function(triggers) {
+                            return triggers.getGoal();
+                        }
                     ]
                 },
                 templateUrl: 'home/partials/page.html',

@@ -7,7 +7,8 @@
                 var o = {
                     triggerList: [],
                     trigger: {},
-                    latest: {}
+                    latest: {},
+                    goal: {}
                 };
 
                 var andSetTrigger;
@@ -58,8 +59,13 @@
 
                 o.getLatest = function(){
                     return Restangular.all('triggers').one('latest').get().then(function(data){
-                        console.log('data', data);
                         o.latest = data;
+                    });
+                };
+
+                o.getGoal = function(){
+                    return Restangular.all('triggers').one('goal').get().then(function(data){
+                        o.goal = data;
                     });
                 };
 
