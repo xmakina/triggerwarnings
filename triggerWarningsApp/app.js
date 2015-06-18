@@ -6,6 +6,7 @@
         'restangular',
         'ui.select2',
         'angularMoment',
+        'yaru22.angular-timeago',
         'triggerWarningsApp.templates',
         'triggerWarningsApp.home',
         'triggerWarningsApp.shows',
@@ -35,6 +36,12 @@
             });
 
             $urlRouterProvider.otherwise('/');
+        }
+    ]);
+
+    angular.module('triggerWarningsApp').config(['RestangularProvider',
+        function(RestangularProvider) {
+            RestangularProvider.setBaseUrl('api/v1');
         }
     ]);
 

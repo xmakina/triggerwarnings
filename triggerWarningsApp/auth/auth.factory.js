@@ -16,7 +16,6 @@
 
                 auth.isLoggedIn = function() {
                     var token = auth.getToken();
-console.log('token', token);
                     if (token) {
                         var payload = JSON.parse($window.atob(token.split('.')[1]));
 
@@ -55,7 +54,6 @@ console.log('token', token);
 
                 auth.logOut = function() {
                     $window.localStorage.removeItem('triggerWarningsApp-token');
-                    location.reload();
                 };
 
                 Restangular.setDefaultHeaders({

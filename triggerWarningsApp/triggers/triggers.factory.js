@@ -6,7 +6,9 @@
             function(Restangular) {
                 var o = {
                     triggerList: [],
-                    trigger: {}
+                    trigger: {},
+                    latest: {},
+                    goal: {}
                 };
 
                 var andSetTrigger;
@@ -53,6 +55,18 @@
                 o.removeTrigger = function(trigger) {
                     return trigger.remove().then(function() {
                         return o.getTriggers(trigger.episode);
+                    });
+                };
+
+                o.getLatest = function(){
+                    return Restangular.all('triggers').one('latest').get().then(function(data){
+                        o.latest = data;
+                    });
+                };
+
+                o.getGoal = function(){
+                    return Restangular.all('triggers').one('goal').get().then(function(data){
+                        o.goal = data;
                     });
                 };
 
