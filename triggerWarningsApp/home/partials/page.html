@@ -5,21 +5,24 @@
     <a ui-sref="shows.list" class="btn btn-primary">TV Shows</a>
 </div>
 <div class="contribute">
-	<h3>Contribute</h3>
-	<p>The trigger warnings are provided by people just like you! If you find a trigger, please add it to the episode.</p>
-	<p>If you feel able to help, we're currently focusing on:</p>
-	<ul>
-	<li><a ui-sref="shows.detail.page({showId:264586})">Orange Is the New Black</a></li>
-	<li><a ui-sref="shows.detail.page({showId:121361})">Game of Thrones</a></li>
-	<li><a ui-sref="shows.detail.page({showId:72248})">Quantum Leap</a></li>
-	</ul>
+    <h3>Contribute</h3>
+    <p>The trigger warnings are provided by people just like you! If you find a trigger, please add it to the episode.</p>
+    <p ng-if="goal.count < goal.desired">We currently have {{goal.count}} triggers logged. Our current goal is {{goal.desired}}.</p>
+    <p ng-if="goal.count >= goal.desired">Woo! We've hit {{goal.count}} triggers logged! Thank you everyone for contributing. We'll have a new goal up soon.</p>
+    <p>If you're not sure which show to contribute to, we're currently focusing on:</p>
+    <ul>
+        <li><a ui-sref="shows.detail.page({showId:264586})">Orange Is the New Black</a></li>
+        <li><a ui-sref="shows.detail.page({showId:121361})">Game of Thrones</a></li>
+        <li><a ui-sref="shows.detail.page({showId:72248})">Quantum Leap</a></li>
+    </ul>
+    <p><strong>Remember:</strong> contributing trigger warnings is entirely voluntary. Don't expose yourself to undue risk or harm while adding triggers.</p>
 </div>
 <div class="suggestions">
-	<h3>Suggestions</h3>
+    <h3>Suggestions</h3>
     <p>Got a suggestion or found a bug? <a href="https://github.com/OmnicronSoftware/TriggerWarnings/issues" target="_blank">Please let us know!</a></p>
 </div>
 <div class="donate">
-	<h3>Donate</h3>
+    <h3>Donate</h3>
     <p>Like what we're doing? Buy the developer a coffee.</p>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">

@@ -11,13 +11,29 @@
         Trigger.find().sort([
             ['date', 'descending']
         ]).limit(1).exec(function(err, trigger) {
-            if(err){
+            if (err) {
                 return next(err);
             }
 
             res.json(trigger[0]);
         });
     });
+
+    router.get('/goal', function(req, res, next) {
+        Trigger.count(function(err, count) {
+            if (err) {
+                return next(err);
+            }
+
+            var desired = 10;
+
+            res.json({
+                count: count,
+                desired: desired
+            });
+        });
+    });
+
     module.exports = router;
 
     return router;
