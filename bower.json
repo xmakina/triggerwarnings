@@ -23,9 +23,10 @@
     "angular-ui-select2": "~0.0.5",
     "moment": "~2.10.3",
     "angular-moment": "~0.10.1",
-    "angular-timeago": "~0.1.12"
+    "angular-timeago": "~0.1.12",
+    "ngtoast": "~1.5.4"
   },
   "resolutions": {
-    "angular": "1.4.0"
+    "angular": "~1.4.0"
   }
 }

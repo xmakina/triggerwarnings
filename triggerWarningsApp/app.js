@@ -7,6 +7,7 @@
         'ui.select2',
         'angularMoment',
         'yaru22.angular-timeago',
+        'ngToast',
         'triggerWarningsApp.templates',
         'triggerWarningsApp.home',
         'triggerWarningsApp.shows',
