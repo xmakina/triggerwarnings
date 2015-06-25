@@ -70,7 +70,8 @@
                     'bower_components/angular-ui-select2/src/select2.js',
                     'bower_components/moment/moment.js',
                     'bower_components/angular-moment/angular-moment.js',
-                    'bower_components/angular-timeago/src/timeAgo.js'
+                    'bower_components/angular-timeago/src/timeAgo.js',
+                    'bower_components/ngtoast/dist/ngToast.js'
                 ])
             .pipe(concat('vendor.js'))
             .pipe(gulp.dest('public/javascripts'));
@@ -82,7 +83,9 @@
                     'bower_components/angular-loading-bar/build/loading-bar.css',
                     'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
                     'bower_components/angular-carousel/dist/angular-carousel.css',
-                    'bower_components/select2/select2.css'
+                    'bower_components/select2/select2.css',
+                    'bower_components/ngtoast/dist/ngToast.css',
+                    'bower_components/ngtoast/dist/ngToast-animations.css'
                 ])
             .pipe(concat('vendor.css'))
             .pipe(gulp.dest('public/stylesheets'));

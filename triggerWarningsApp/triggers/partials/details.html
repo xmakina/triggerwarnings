@@ -1,6 +1,6 @@
 <div class="row marketing">
     <div class="col-lg-6">
-    	<h3><a ui-sref="shows.detail.page">{{show.tvShow.name}}</a> : <a ui-sref="episodes.detail.page">{{episode.name}}</a></h3>
+        <h3><a ui-sref="shows.detail.page">{{show.tvShow.name}}</a> : <a ui-sref="episodes.detail.page">{{episode.name}}</a></h3>
         <h4>Add a Trigger Warning</h4>
         <form ng-submit="addTrigger(trigger)">
             <div class="form-group">
@@ -8,14 +8,27 @@
                 <div time-input="trigger.start"></div>
             </div>
             <div class="form-group">
+                <label>
+                    <input type="radio" ng-model="measure" value="duration">Duration
+                </label>
+                <label>
+                <input type="radio" ng-model="measure" value="stoptime">Stop Time
+                </label>
+            </div>
+            <div ng-show="measure === 'duration'" class="form-group">
                 <label>How long does it last for? (Hour:Minute:Second)</label>
                 <div time-input="trigger.duration"></div>
+            </div>
+            <div ng-show="measure === 'stoptime'" class="form-group">
+                <label>When does the trigger stop? (Hour:Minute:Second)</label>
+                <div time-input="stopTime"></div>
             </div>
             <div class="form-group">
                 <label for="tags">Tags (Single, categorising words. You may add your own. Please, no spoilers.)</label>
                 <input id="tags" type="hidden" ui-select2="tagOptions" ng-model="trigger.tags" style="width:100%;" />
             </div>
-            <input class="btn btn-default" type="submit">
+            <input class="btn btn-success" type="submit">
+            <button ng-if="trigger.id !== undefined" class="btn btn-danger" ng-click="removeTrigger(trigger)">Delete</button>
         </form>
     </div>
 </div>

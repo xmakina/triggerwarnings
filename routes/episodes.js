@@ -35,7 +35,7 @@
     });
 
     router.post('/:id/triggers', auth, function(req, res, next) {
-        if (!req.body.start || !req.body.duration || !req.body.tags) {
+        if (!req.body.start || !req.body.duration || req.body.tags.length === 0) {
             return res.status(400).json({
                 message: 'Please fill out all fields'
             });

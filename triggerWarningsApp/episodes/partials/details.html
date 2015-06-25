@@ -9,11 +9,13 @@
             </li>
             <ul>
                 <li>Start: {{episodeTrigger.start | time}}</li>
+                <li>End: {{episodeTrigger.start + episodeTrigger.duration | time}}
                 <li>Duration: {{episodeTrigger.duration | time}}</li>
-                <li ng-if="isLoggedIn() === true"><a class="clickable" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
-                <li ng-if="isLoggedIn() === true"><a ng-click="removeTrigger(episodeTrigger)">Remove</a></li>
+                <li ng-if="isLoggedIn() === true"><a class="btn btn-default" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
             </ul>
         </ul>
-        <p><a ng-if="isLoggedIn()" ui-sref="triggers.add">Add trigger</a></p>
+        <hr />
+        <p ng-show="isLoggedIn()"><a class="btn btn-primary" ui-sref="triggers.add">Add trigger</a></p>
+        <p ng-hide="isLoggedIn()" ><a ui-sref="auth.login">Log in to add/edit/remove triggers</a></p>
     </div>
 </div>
