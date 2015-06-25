@@ -15,12 +15,11 @@
                         return;
                     }
 
-                    if (newval < $scope.trigger.start) {
-                        $scope.stopTime = $scope.trigger.start;
-                        return;
-                    }
-
                     $scope.trigger.duration = newval - $scope.trigger.start;
+
+                    if($scope.trigger.duration < 0){
+                        $scope.trigger.duration = 0;
+                    }
                 });
 
                 $scope.$watch('trigger.duration', function(newval, oldval) {
@@ -31,8 +30,8 @@
                     $scope.stopTime = $scope.trigger.start + $scope.trigger.duration;
                 });
 
-                $scope.$watch('trigger.start', function(newval, oldval){
-                    if(oldval === newval){
+                $scope.$watch('trigger.start', function(newval, oldval) {
+                    if (oldval === newval) {
                         return;
                     }
 
@@ -56,30 +55,29 @@
                 };
 
                 $scope.addTrigger = function(trigger) {
-
-                    if ($scope.measure === 'stoptime') {
-                        console.log('');
-                    }
-
-                    if (trigger.episode === undefined) {
-                        var sentTrigger = angular.copy(trigger);
-
-                        sentTrigger.show = $scope.show.tvShow.id;
-                        sentTrigger.showName = $scope.show.tvShow.name;
-                        sentTrigger.episode = $scope.episode.id;
-                        sentTrigger.episodeName = $scope.episode.name;
-
-                        triggers.addTrigger(sentTrigger).then(function() {
-                            ngToast.success('trigger added');
-                            $state.go('episodes.detail.page');
-                        }, function(error) {
-                            console.log(error);
-                            handleError(error.data.message);
-                        });
+                    if (trigger.duration <= 0) {
+                        handleError('trigger must last at least one second');
+                        trigger.duration = 0;
                     } else {
-                        triggers.updateTrigger(trigger).then(function() {
-                            $state.go('episodes.detail.page');
-                        });
+                        if (trigger.episode === undefined) {
+                            var sentTrigger = angular.copy(trigger);
+
+                            sentTrigger.show = $scope.show.tvShow.id;
+                            sentTrigger.showName = $scope.show.tvShow.name;
+                            sentTrigger.episode = $scope.episode.id;
+                            sentTrigger.episodeName = $scope.episode.name;
+
+                            triggers.addTrigger(sentTrigger).then(function() {
+                                ngToast.success('trigger added');
+                                $state.go('episodes.detail.page');
+                            }, function(error) {
+                                handleError(error.data.message);
+                            });
+                        } else {
+                            triggers.updateTrigger(trigger).then(function() {
+                                $state.go('episodes.detail.page');
+                            });
+                        }
                     }
                 };
 
