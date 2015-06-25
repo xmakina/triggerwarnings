@@ -1,6 +1,7 @@
 <div class="header clearfix">
     <nav>
         <ul class="nav nav-pills pull-right">
+        <li role="presentation"><a ui-sref="dashboard.page">Home</a></li>
             <li role="presentation"><a ui-sref="shows.list">TV Shows</a></li>
             <li ng-hide="isLoggedIn() === true" role="presentation"><a ui-sref="auth.login">Log In</a></li>
             <li ng-show="isLoggedIn() === true" role="presentation"><a ui-sref="auth.logout">Log Out</a></li>
