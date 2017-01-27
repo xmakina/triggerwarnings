@@ -98,6 +98,14 @@
                 ])
             .pipe(gulp.dest('public/stylesheets'));
     });
+    gulp.task('custom_css', function() {
+        return gulp.src(
+                [
+                    'triggerwarnings.css'
+                ])
+            .pipe(concat('triggerwarnings.css'))
+            .pipe(gulp.dest('public/stylesheets'));
+    });
     gulp.task('vendor_components', ['vendor_js', 'vendor_css', 'vendor_css_map', 'vendor_images']);
     gulp.task('watch', ['build'], function() {
         // Watch .js files
@@ -111,7 +119,7 @@
 
         foreman();
     });
-    gulp.task('build', ['vendor_components', 'scripts', 'template_cache']);
+    gulp.task('build', ['vendor_components', 'scripts', 'template_cache', 'custom_css']);
     gulp.task('default', ['watch', 'build']);
     gulp.task('heroku:production', ['build']);
     return gulp;
