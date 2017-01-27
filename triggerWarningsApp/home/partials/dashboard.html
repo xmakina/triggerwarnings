@@ -1,13 +1,13 @@
 <div class="header clearfix">
     <nav>
         <ul class="nav nav-pills pull-right">
-        <li role="presentation"><a ui-sref="dashboard.page">Home</a></li>
+            <li role="presentation"><a ui-sref="dashboard.page">Home</a></li>
             <li role="presentation"><a ui-sref="shows.list">TV Shows</a></li>
             <li ng-hide="isLoggedIn()" role="presentation"><a ui-sref="auth.login">Log In</a></li>
             <li ng-show="isLoggedIn()" role="presentation"><a ui-sref="auth.logout">Log Out</a></li>
         </ul>
     </nav>
-    <h3 class="text-muted" ng-click="goHome()">Trigger Warnings<span class="small">.info</span></h3>
+    <h3 class="text-muted"><a class="static" ui-sref="dashboard.page">Trigger Warnings<span class="small">.info</span></a></h3>
 </div>
 <div class="container">
     <ui-view></ui-view>
@@ -16,10 +16,11 @@
     <hr />
     <div class="container">
         <div class="pull-left">
-            <p><a href="https://github.com/OmnicronSoftware/TriggerWarnings/issues" target="_blank">Problem or suggestion?</a></p>
+            <p><a href="https://github.com/xmakina/TriggerWarnings/issues" target="_blank">Problem or suggestion?</a></p>
         </div>
         <div class="pull-right">
-            <p>&copy; <a href="https://www.twitter.com/xmakina" target="_blank"> Alex Winson 2015</a></p>
+            <p>&copy; <a href="https://www.twitter.com/xmakina" target="_blank">Alex Addams 2015-17</a></p>
         </div>
     </div>
+</div>
 </div>
