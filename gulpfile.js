@@ -71,7 +71,8 @@
                     'bower_components/moment/moment.js',
                     'bower_components/angular-moment/angular-moment.js',
                     'bower_components/angular-timeago/src/timeAgo.js',
-                    'bower_components/ngtoast/dist/ngToast.js'
+                    'bower_components/ngtoast/dist/ngToast.js',
+                    'bower_components/bootstrap/js/collapse.js'
                 ])
             .pipe(concat('vendor.js'))
             .pipe(gulp.dest('public/javascripts'));

@@ -13,7 +13,8 @@
         duration: Number,
         tags: [String],
         date: { type: Date, default: Date.now },
-        authour: String
+        authour: String,
+        flagged: Boolean
     });
 
     mongoose.model('Trigger', TriggerSchema);

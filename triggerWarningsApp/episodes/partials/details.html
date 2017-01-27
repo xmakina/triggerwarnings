@@ -2,20 +2,36 @@
     <div class="col-lg-6">
         <h3><a ui-sref="shows.detail.page">{{show.tvShow.name}}</a> : {{episode.name}}</h3>
         <h4>Trigger Warnings</h4>
-        <p ng-if="triggerList.length === 0">No triggers found. <emphasis>This may not mean the episode is trigger free.</emphasis></p>
-        <ul ng-repeat="episodeTrigger in triggerList">
+        <p ng-if="triggerList.length === 0">No triggers found.
+            <emphasis>This may not mean the episode is trigger free.</emphasis>
+        </p>
+        <ul ng-repeat="episodeTrigger in triggerList | filter:{flagged:0}">
             <li>
                 <span ng-repeat="tag in episodeTrigger.tags">{{tag}}<span ng-if="$index < episodeTrigger.tags.length - 1">,&nbsp;</span></span>
             </li>
             <ul>
                 <li>Start: {{episodeTrigger.start | time}}</li>
                 <li>End: {{episodeTrigger.start + episodeTrigger.duration | time}}
-                <li>Duration: {{episodeTrigger.duration | time}}</li>
-                <li ng-if="isLoggedIn() === true"><a class="btn btn-default" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
+                    <li>Duration: {{episodeTrigger.duration | time}}</li>
+                    <li ng-if="isLoggedIn() === true"><a class="btn btn-default" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
             </ul>
         </ul>
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#flaggedTriggers">Show Flagged Triggers</button>
+        <div id="flaggedTriggers" class="collapse">
+            <ul ng-repeat="episodeTrigger in triggerList | filter:{flagged:1}">
+                <li>
+                    <span ng-repeat="tag in episodeTrigger.tags">{{tag}}<span ng-if="$index < episodeTrigger.tags.length - 1">,&nbsp;</span></span>
+                </li>
+                <ul>
+                    <li>Start: {{episodeTrigger.start | time}}</li>
+                    <li>End: {{episodeTrigger.start + episodeTrigger.duration | time}}
+                        <li>Duration: {{episodeTrigger.duration | time}}</li>
+                        <li ng-if="isLoggedIn() === true"><a class="btn btn-default" ui-sref="triggers.detail({triggerId: episodeTrigger.id})">Edit</a></li>
+                </ul>
+            </ul>
+        </div>
         <hr />
         <p ng-show="isLoggedIn()"><a class="btn btn-primary" ui-sref="triggers.add">Add trigger</a></p>
-        <p ng-hide="isLoggedIn()" ><a ui-sref="auth.login">Log in to add/edit/remove triggers</a></p>
+        <p ng-hide="isLoggedIn()"><a ui-sref="auth.login">Log in to add/edit/remove triggers</a></p>
     </div>
 </div>
