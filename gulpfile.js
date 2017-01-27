@@ -99,7 +99,7 @@
             .pipe(gulp.dest('public/stylesheets'));
     });
     gulp.task('vendor_components', ['vendor_js', 'vendor_css', 'vendor_css_map', 'vendor_images']);
-    gulp.task('watch', function() {
+    gulp.task('watch', ['build'], function() {
         // Watch .js files
         gulp.watch('triggerWarningsApp/**/*.js', ['scripts']);
         gulp.watch('triggerWarningsApp/**/*.html', ['template_cache']);
